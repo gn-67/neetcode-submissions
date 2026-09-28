@@ -1,0 +1,11 @@
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+
+        cost.append(0)
+        #if we go over, cost of that added is 0. this is the goal
+
+        for i in range(len(cost) - 3, -1, -1):
+            cost[i] = min(cost[i] + cost[i+1], cost[i]+cost[i+2])
+
+        return min(cost[0], cost[1])
+        
