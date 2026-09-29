@@ -1,0 +1,18 @@
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        #a lil similar to longest increasing subsequence
+        #we can use a top down memoization approach
+
+        dp = [False] * (len(s) + 1)
+        dp[len(s)] = True
+
+        for i in range(len(s) - 1, -1, -1):
+            for word in wordDict:
+                if i + len(word) <= len(s) and word == s[i:i+len(word)]:
+                    dp[i] = dp[i + len(word)]
+                if dp[i] == True:
+                    break
+        
+        return dp[0]
+
+        
